@@ -59,10 +59,6 @@ public:
 		New<CStage>();
 	}
 
-	// 矩形同士の衝突判定を行う
-	bool isHitRect(CVector PrevPos0, CVector PrevPos1, CVector NextPos0, CVector NextPos1, float *refFrame, CVector *refVec){
-
-	}
 	// 移動
 	void Move() {
 		if (KeyState[0][DIK_C]) Reset();					// Cを押したらリセット
@@ -80,9 +76,6 @@ public:
 			ItemList.Move();
 			LightList.Move();
 			CameraList.Move();
-			
-			MyShipList.Apply([&](CMyMover* c0) {
-			});
 
 			Time++;
 		}

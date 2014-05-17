@@ -63,8 +63,12 @@ void CMyShip::Move() {
 	// 移動量の適用
 	Position+=Velocity;
 
+	// ブロックとの衝突処理
+	CHitRectangle hit;
+	Apply(BlockList, hit);
+
 	// ジャンプ
-	if (/*hit.Down &&*/ OldKeyState[0][DIK_Z] && KeyState[0][DIK_Z]) Velocity.Y = 0.04f;
+	if (hit.Down && OldKeyState[0][DIK_Z] && KeyState[0][DIK_Z]) Velocity.Y = 0.04f;
 
 	// ダッシュ
 	if (KeyState[0][DIK_X]){
@@ -84,10 +88,6 @@ void CMyShip::Move() {
 			}
 		});
 	}
-
-	// ブロックとの衝突処理
-	CHitRectangle hit;
-	Apply(BlockList, hit);
 
 	// 得点アイテムの取得
 	ItemList.Apply([&](CMover* e) {

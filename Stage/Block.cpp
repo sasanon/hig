@@ -41,9 +41,9 @@ void CBlock::Move() {
 			// ブロックの移動ベクトルを回転
 			Velocity *= RotationZ(60.0f * D3DX_PI * 2);
 			// 上に乗っているものも一緒に移動
-			MyShipList.Apply([&](CMyMover* e) {
+			MyShipList.Apply([&](CMover* e) {
 				if (Length(e->Position - Position)<0.155f) {
-					e->PosNext.X += Velocity.X * 0.01f;
+					e->Position.X += Velocity.X * 0.01f;
 				}
 			});
 			// ブロックを移動
@@ -55,7 +55,7 @@ void CBlock::Move() {
 			// 上に乗っているものも一緒に移動
 			MyShipList.Apply([&](CMover* e) {
 				if (Length(e->Position - Position)<0.155f) {
-					e->PosNext.X += Velocity.X;
+					e->Position.X += Velocity.X;
 				}
 			});
 			PosNext.X += Velocity.X;
